@@ -1,39 +1,10 @@
-let playerChoice = prompt("Rock, paper, scissors?");
+// let playerChoice = prompt("Rock, paper, scissors?");
 let computerChoice = Math.floor(Math.random() * 3) + 1;
 let playerScore = 0;
 let computerScore = 0;
 
-// Round 1
 getComputerChoice(computerChoice);
-playRound(playerChoice, computerChoice);
-game(playerScore, computerScore);
-
-// Round 2
-playerChoice = prompt("Rock, paper, scissors?");
-computerChoice = Math.floor(Math.random() * 3) + 1;
-getComputerChoice(computerChoice);
-playRound(playerChoice, computerChoice);
-game(playerScore, computerScore);
-
-// Round 3
-playerChoice = prompt("Rock, paper, scissors?");
-computerChoice = Math.floor(Math.random() * 3) + 1;
-getComputerChoice(computerChoice);
-playRound(playerChoice, computerChoice);
-game(playerScore, computerScore);
-
-// Round 4
-playerChoice = prompt("Rock, paper, scissors?");
-computerChoice = Math.floor(Math.random() * 3) + 1;
-getComputerChoice(computerChoice);
-playRound(playerChoice, computerChoice);
-game(playerScore, computerScore);
-
-// Round 5
-playerChoice = prompt("Rock, paper, scissors?");
-computerChoice = Math.floor(Math.random() * 3) + 1;
-getComputerChoice(computerChoice);
-playRound(playerChoice, computerChoice);
+// playRound(playerChoice, computerChoice);
 game(playerScore, computerScore);
 finalScore(playerScore, computerScore);
 
@@ -53,6 +24,14 @@ function getComputerChoice(number) {
         return computerChoice;
     }
 }
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        playRound(button.textContent, computerChoice);
+    });
+});
 
 function playRound(rps, cs) { 
     // rps = Rock, Paper or Scissors & cs = computerChoice
