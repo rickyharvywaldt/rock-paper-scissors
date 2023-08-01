@@ -3,10 +3,18 @@ let computerChoice = Math.floor(Math.random() * 3) + 1;
 let playerScore = 0;
 let computerScore = 0;
 
+const buttons = document.querySelectorAll('button');
+
+// round 1
 getComputerChoice(computerChoice);
-// playRound(playerChoice, computerChoice);
-game(playerScore, computerScore);
-finalScore(playerScore, computerScore);
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        playRound(button.textContent, computerChoice);
+        game(playerScore, computerScore);
+        finalScore(playerScore, computerScore);
+    });
+});
 
 
 function getComputerChoice(number) {
@@ -24,14 +32,6 @@ function getComputerChoice(number) {
         return computerChoice;
     }
 }
-
-const buttons = document.querySelectorAll('button');
-
-buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-        playRound(button.textContent, computerChoice);
-    });
-});
 
 function playRound(rps, cs) { 
     // rps = Rock, Paper or Scissors & cs = computerChoice
@@ -65,8 +65,18 @@ function playRound(rps, cs) {
 }
 
 function game(score1, score2) {
-    console.log("Player Score: " + score1);
-    console.log("Computer Score: " + score2);
+    const score = document.querySelector('#container');
+    const content = document.createElement('div');
+    content.classList.add('score')
+
+    const para = document.createElement('p');
+    para.textContent = "Player Score: " + score1;
+    const para2 = document.createElement('p');
+    para2.textContent = "Computer Score: " + score2;
+
+    content.appendChild(para);
+    content.appendChild(para2);
+    score.appendChild(content);
 }
 
 function finalScore(score1, score2) {
@@ -78,5 +88,4 @@ function finalScore(score1, score2) {
         console.log("You lost the game!");
     }
 }
-
 
